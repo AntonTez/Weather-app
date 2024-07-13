@@ -28,11 +28,12 @@ document.querySelector('#city').onchange = getWeather;
 
 function createSelect (cities) {
 	const parentElement = document.querySelector('.weather-app');
-	const firstChildElement = parentElement.firstChild;
+	const mainInfoElement = document.querySelector('.app__main-info');
 	const selectElement = document.createElement('select');
 	
+	selectElement.className = 'app__select';
 	selectElement.id = 'city';
-
+	
 	for (let i = 0; i < cities.length; i++) {
 		const option = document.createElement('option');
 
@@ -41,7 +42,7 @@ function createSelect (cities) {
 		selectElement.appendChild(option);
 	}
 
-	parentElement.insertBefore(selectElement, firstChildElement);
+	parentElement.insertBefore(selectElement, mainInfoElement);
 }
 
 function getWeather() {
@@ -57,11 +58,11 @@ function showWeather(data) {
 	// console.log(data);
 	// const weatherParams = ["city-name", "temperature", "weather-icon", "description", "direction-of-the-wind", "wind-speed", "pressure"]
 
-	document.querySelector('#city-name').innerHTML = `<p>${data.name}</p>`;
-    document.querySelector('#temperature').innerHTML = `<p>${data.main.temp}&deg</p>`;
-	document.querySelector('#weather-icon').innerHTML = `<img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="weather-icon">`;
-	document.querySelector('#description').innerHTML = `<p>${data.weather[0].description}</p>`;
-	document.querySelector('#direction-of-the-wind').innerHTML = `<p>Direction of the wind <br> ${data.wind.deg}</p>`;
-	document.querySelector('#wind-speed').innerHTML = `<p>Wind speed <br> ${data.wind.speed}</p>`;
-	document.querySelector('#pressure').innerHTML = `<p>Pressure <br> ${data.main.pressure}</p>`;
+	document.querySelector('#city-name').textContent = data.name;
+	document.querySelector('#temperature').innerHTML = `${data.main.temp}&deg`;
+	document.querySelector('#status').textContent = data.weather[0].description;
+	document.querySelector('#weather-icon').src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+	document.querySelector('#direction-of-the-wind').textContent = data.wind.deg;
+	document.querySelector('#wind-speed').textContent = data.wind.speed;
+	document.querySelector('#pressure').textContent = data.main.pressure;
 }

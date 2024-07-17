@@ -1,44 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Weather App</title>
-</head>
-<body>
-    <div class="container">
-        <div class="weather-app app">
-            <h1 class="app__title">API Weather</h1>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="css/style.css" />
+		<title>Weather App</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="weather-app app">
+				<h1 class="app__title">API Weather</h1>
 
-            <div class="app__main-info">
-                <div class="app__data">
-                    <p class="app__value" id ="city-name">Default</p>
-                </div>
-                <div class="app__data">
-                    <p class="app__value" id="temperature">0</p>
-                    <p class="app__value" id="status">default</p>
-                </div>
-                <div class="app__data">
-                    <img id ="weather-icon" src="https://openweathermap.org/img/wn/01n@2x.png" alt="weather-icon">
-                </div>
-                <div class="app__data">
-                    <p class="app__description">Direction of the wind</p>
-                    <p class="app__value" id ="direction-of-the-wind">0</p>
-                </div>
-                <div class="app__data">
-                    <p class="app__description">Wind speed</p>
-                    <p class="app__value" id ="wind-speed">0</p>
-                </div>
-                <div class="app__data">
-                    <p class="app__description">Pressure</p>
-                    <p class="app__value" id ="pressure">0</p>
-                </div>
-            </div>
-        </div>
-    </div>
+				<div class="app__main-info">
+					<div class="app__data">
+						<p class="app__value" id="city-name">Default</p>
+					</div>
+					<div class="app__data">
+						<p class="app__value" id="temperature">0</p>
+						<p class="app__value" id="status">default</p>
+					</div>
+					<div class="app__data">
+						<img
+							id="weather-icon"
+							src="https://openweathermap.org/img/wn/01n@2x.png"
+							alt="weather-icon"
+						/>
+					</div>
+					<div class="app__data">
+						<p class="app__description">Direction of the wind</p>
+						<p class="app__value" id="direction-of-the-wind">0</p>
+					</div>
+					<div class="app__data">
+						<p class="app__description">Wind speed</p>
+						<p class="app__value" id="wind-speed">0</p>
+					</div>
+					<div class="app__data">
+						<p class="app__description">Pressure</p>
+						<p class="app__value" id="pressure">0</p>
+					</div>
+				</div>
+			</div>
+		</div>
 
-    <script src="scripts.js"></script>
-</body>
+		<script src="scripts.js"></script>
+	</body>
 </html>

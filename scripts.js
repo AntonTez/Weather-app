@@ -29,45 +29,54 @@ document.querySelector('#city').onchange = getWeather;
 function createSelect(cities) {
 	const parentElement = document.querySelector('.weather-app');
 	const mainInfoElement = document.querySelector('.app__main-info');
-	const selectElement = document.createElement('select');
 
-	selectElement.className = 'app__select';
-	selectElement.id = 'city';
+	if (parentElement && mainInfoElement) {
+		const selectElement = document.createElement('select');
 
-	for (let i = 0; i < cities.length; i++) {
-		const option = document.createElement('option');
+		selectElement.className = 'app__select';
+		selectElement.id = 'city';
 
-		option.value = cities[i].cityId;
-		option.text = cities[i].cityName;
-		selectElement.appendChild(option);
+		cities.forEach((city) => {
+			const option = document.createElement('option');
+
+			option.value = city.cityId;
+			option.text = city.cityName;
+			selectElement.appendChild(option);
+		});
+
+		parentElement.insertBefore(selectElement, mainInfoElement);
 	}
-
-	parentElement.insertBefore(selectElement, mainInfoElement);
 }
 
 function getWeather() {
 	const cityId = document.querySelector('#city').value;
 
-	fetch(
-		`${paramApi.url}weather?id=${cityId}&units=metric&appid=${paramApi.appid}`
-	)
-		.then((weather) => {
-			return weather.json();
-		})
-		.then(showWeather);
+	if (cityId) {
+		fetch(
+			`${paramApi.url}weather?id=${cityId}&units=metric&appid=${paramApi.appid}`
+		)
+			.then((weather) => {
+				return weather.json();
+			})
+			.then(showWeather);
+	}
 }
 
 function showWeather(data) {
-	// console.log(data);
-	// const weatherParams = ["city-name", "temperature", "weather-icon", "description", "direction-of-the-wind", "wind-speed", "pressure"]
+	const cityNameEl = document.querySelector('#city-name');
+	const temperatureEl = document.querySelector('#temperature');
+	const statusEl = document.querySelector('#status');
+	const weatherIconEl = document.querySelector('#weather-icon');
+	const directionOfTheWindEl = document.querySelector('#direction-of-the-wind');
+	const windSpeedEl = document.querySelector('#wind-speed');
+	const pressureEl = document.querySelector('#pressure');
 
-	document.querySelector('#city-name').textContent = data.name;
-	document.querySelector('#temperature').innerHTML = `${data.main.temp}&deg`;
-	document.querySelector('#status').textContent = data.weather[0].description;
-	document.querySelector(
-		'#weather-icon'
-	).src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-	document.querySelector('#direction-of-the-wind').textContent = data.wind.deg;
-	document.querySelector('#wind-speed').textContent = data.wind.speed;
-	document.querySelector('#pressure').textContent = data.main.pressure;
+	if (cityNameEl) cityNameEl.textContent = data.name;
+	if (temperatureEl) temperatureEl.innerHTML = `${data.main.temp}&deg`;
+	if (statusEl) statusEl.textContent = data.weather[0].description;
+	if (weatherIconEl)
+		weatherIconEl.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+	if (directionOfTheWindEl) directionOfTheWindEl.textContent = data.wind.deg;
+	if (windSpeedEl) windSpeedEl.textContent = data.wind.speed;
+	if (pressureEl) pressureEl.textContent = data.main.pressure;
 }
